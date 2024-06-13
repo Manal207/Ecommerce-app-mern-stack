@@ -6,7 +6,7 @@ import Product from '../components/Product';
 const ProductListScreen = () => {
   const dispatch = useDispatch();
 
-  const productList = useSelector((state) => state.productList);
+  const productList = useSelector((state) => state.productList || {});
   const { loading, error, products } = productList;
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const ProductListScreen = () => {
         <div>{error}</div>
       ) : (
         <div>
-          {products.map((product) => (
+          {products && products.map((product) => (
             <Product key={product._id} product={product} />
           ))}
         </div>
@@ -32,3 +32,4 @@ const ProductListScreen = () => {
 };
 
 export default ProductListScreen;
+
