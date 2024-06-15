@@ -3,6 +3,10 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const productRoutes = require('./routes/productRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
+const addProductRoutes = require('./routes/addProductRoutes')
+const path = require('path'); // Import the path module
+
 
 dotenv.config();
 connectDB();
@@ -12,6 +16,16 @@ const app = express();
 app.use(express.json());
 
 app.use('/api/products', productRoutes); // Ensure this line is present
+
+app.use('/api/upload', uploadRoutes);
+
+app.use('/api/addProduct', addProductRoutes);
+
+
+
+// Make the uploads folder publicly accessible
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
 
 app.use((req, res, next) => {
   const error = new Error(`Not Found - ${req.originalUrl}`);
