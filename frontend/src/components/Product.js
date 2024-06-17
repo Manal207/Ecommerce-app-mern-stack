@@ -24,8 +24,29 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addToCart } from '../actions/cartActions';
+
 
 const Product = ({ product }) => {
+
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+      if (!isAuthenticated) {
+          navigate('/login');
+      } else {
+          // Add product to cart logic
+          dispatch(addToCart(product._id, 1));
+          console.log('prod added to cart');
+
+      }
+  };
+
   return (
     <Card className="my-3 p-3 rounded">
       <Link to={`/product/${product._id}`}>
@@ -42,6 +63,7 @@ const Product = ({ product }) => {
             ${product.price}
           </div>
         </Card.Text>
+        <button onClick={handleAddToCart}>Add to Cart</button>
       </Card.Body>
     </Card>
   );

@@ -1,10 +1,11 @@
-// components/LoginScreen.js
+// components/SignupScreen.js
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../actions/authActions';
+import { registerUser } from '../actions/authActions';
 import { Link, useNavigate } from 'react-router-dom';
 
-const LoginScreen = () => {
+const SignupScreen = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -21,14 +22,23 @@ const LoginScreen = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password }));
+    dispatch(registerUser({ name, email, password }));
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
+    <div className="signup-container">
+      <h2>Sign Up</h2>
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Name</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
         <div className="form-group">
           <label>Email</label>
           <input
@@ -47,13 +57,13 @@ const LoginScreen = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Sign Up</button>
       </form>
       <p>
-        Don't have an account? <Link to="/signup">Sign up</Link>
+        Already have an account? <Link to="/login">Login</Link>
       </p>
     </div>
   );
 };
 
-export default LoginScreen;
+export default SignupScreen;

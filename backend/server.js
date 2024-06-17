@@ -5,7 +5,10 @@ const connectDB = require('./config/db');
 const productRoutes = require('./routes/productRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const addProductRoutes = require('./routes/addProductRoutes')
+const authRoutes = require('./routes/authRoutes'); // Make sure the path is correct
 const path = require('path'); // Import the path module
+const cartRoutes = require('./routes/cartRoutes');
+
 
 
 dotenv.config();
@@ -16,10 +19,12 @@ const app = express();
 app.use(express.json());
 
 app.use('/api/products', productRoutes); // Ensure this line is present
-
 app.use('/api/upload', uploadRoutes);
-
 app.use('/api/addProduct', addProductRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/cart', cartRoutes);
+
+
 
 
 
