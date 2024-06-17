@@ -59,6 +59,17 @@ router.post('/add', auth, async (req, res) => {
 //   });
 
 // routes/cart.js
+// router.get('/', auth, async (req, res) => {
+//     try {
+//       const cart = await Cart.findOne({ user: req.user.id }).populate('items.product');
+//       res.json(cart || { items: [] });
+//     } catch (err) {
+//       console.error(err.message);
+//       res.status(500).send('Server error');
+//     }
+//   });
+
+// routes/cart.js
 router.get('/', auth, async (req, res) => {
     try {
       const cart = await Cart.findOne({ user: req.user.id }).populate('items.product');
@@ -71,22 +82,42 @@ router.get('/', auth, async (req, res) => {
   
 
 // Remove item from cart
+// router.delete('/remove/:productId', auth, async (req, res) => {
+//   try {
+//     const cart = await Cart.findOne({ user: req.user.id });
+
+//     if (!cart) {
+//       return res.status(404).json({ msg: 'Cart not found' });
+//     }
+
+//     cart.items = cart.items.filter(item => item.product.toString() !== req.params.productId);
+
+//     await cart.save();
+//     res.json(cart);
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send('Server error');
+//   }
+// });
+
+// Remove item from cart
 router.delete('/remove/:productId', auth, async (req, res) => {
-  try {
-    const cart = await Cart.findOne({ user: req.user.id });
-
-    if (!cart) {
-      return res.status(404).json({ msg: 'Cart not found' });
+    try {
+      let cart = await Cart.findOne({ user: req.user.id });
+  
+      if (!cart) {
+        return res.status(404).json({ msg: 'Cart not found' });
+      }
+  
+      cart.items = cart.items.filter(item => item.product.toString() !== req.params.productId);
+  
+      await cart.save();
+      cart = await Cart.findOne({ user: req.user.id }).populate('items.product');
+      res.json(cart);  // Return the updated cart with populated product details
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
     }
-
-    cart.items = cart.items.filter(item => item.product.toString() !== req.params.productId);
-
-    await cart.save();
-    res.json(cart);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
-  }
-});
+  });
 
 module.exports = router;
