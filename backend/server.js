@@ -8,6 +8,9 @@ const addProductRoutes = require('./routes/addProductRoutes')
 const authRoutes = require('./routes/authRoutes'); // Make sure the path is correct
 const path = require('path'); // Import the path module
 const cartRoutes = require('./routes/cartRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+
+
 
 
 
@@ -23,6 +26,9 @@ app.use('/api/upload', uploadRoutes);
 app.use('/api/addProduct', addProductRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/orders', orderRoutes);
+
+
 
 
 

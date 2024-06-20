@@ -5,6 +5,7 @@ import authReducer from './reducers/authReducer';
 import { productListReducer } from './reducers/productReducers';
 import { userLoginReducer } from './reducers/userReducers';
 import { cartReducer } from './reducers/cartReducers';
+import { orderCreateReducer } from './reducers/orderReducers';
 
 
 const reducer = combineReducers({
@@ -12,6 +13,8 @@ const reducer = combineReducers({
   productList: productListReducer,
   userLogin: userLoginReducer,
   cart: cartReducer,
+  orderCreate: orderCreateReducer,
+
 
 
   // Add other reducers here

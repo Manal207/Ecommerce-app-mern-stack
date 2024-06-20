@@ -64,19 +64,32 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCart, removeFromCart } from '../actions/cartActions';
+import { useNavigate } from 'react-router-dom';
 
 const CartScreen = () => {
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
   const { cartItems, loading, error } = cart;
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
+
 
   useEffect(() => {
     dispatch(getCart());
+    console.log(user);
   }, [dispatch]);
 
   const handleRemoveFromCart = (productId) => {
     dispatch(removeFromCart(productId));
+  };
+
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
+
+  const calculateTotalPrice = () => {
+    return cartItems.items.reduce((total, item) => total + item.quantity * item.product.price, 0).toFixed(2);
   };
 
   // Add a console log to check the updated cart state
@@ -95,6 +108,7 @@ const CartScreen = () => {
             <div>Your cart is empty</div>
           ) : (
             Array.isArray(cartItems.items) && cartItems.items.map((item) => (
+              
               <div key={item._id} className="cart-item">
                 {item.product && (
                   <>
@@ -106,11 +120,18 @@ const CartScreen = () => {
                     </div>
                   </>
                 )}
+
               </div>
             ))
           )}
+                <div className="order-summary">
+                  <h2>Order Summary</h2>
+                  <p>Total: ${calculateTotalPrice()}</p>
+                  <button onClick={handleCheckout}>Proceed to Checkout</button>
+                </div>
         </div>
       )}
+      
     </div>
   );
 };

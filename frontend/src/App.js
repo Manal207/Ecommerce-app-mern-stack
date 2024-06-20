@@ -5,6 +5,8 @@ import LoginScreen from './screens/loginScreen';
 import ProductUpload from './screens/productUploadScreen';
 import SignupScreen from './screens/signupScreen';
 import CartScreen from './screens/cartScreen';
+import CheckoutScreen from './screens/checkoutScreen';
+import PaymentScreen from './screens/paymentScreen';
 
 const App = () => {
   return (
@@ -15,6 +17,11 @@ const App = () => {
         <Route path='/signup' element={<SignupScreen />}/>
         <Route path='/productUpload' element={<ProductUpload />}/>*
         <Route path="/cart" element={<CartScreen />} />
+        <Route path="/checkout" element={<CheckoutScreen />} />
+        <Route path="/payment" element={<PaymentScreen />} />
+
+        
+
 
 
         
