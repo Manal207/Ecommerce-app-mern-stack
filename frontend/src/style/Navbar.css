@@ -1,0 +1,32 @@
+/* styles/Navbar.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e7e7e7;
+  }
+  
+  .navbar-left, .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-left a, .navbar-right a, .navbar-right span {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .navbar-center {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .navbar-logo {
+    font-size: 2rem;
+    font-family: 'Cursive', sans-serif;
+    color: #a7a7a7;
+  }
+  

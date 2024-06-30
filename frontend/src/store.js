@@ -6,14 +6,20 @@ import { productListReducer } from './reducers/productReducers';
 import { userLoginReducer } from './reducers/userReducers';
 import { cartReducer } from './reducers/cartReducers';
 import { orderCreateReducer } from './reducers/orderReducers';
+import { paymentProcessReducer, paymentIntentReducer } from './reducers/paymentReducers';
+import { productCategoryReducer } from './reducers/productReducers';
 
 
 const reducer = combineReducers({
   auth: authReducer,
   productList: productListReducer,
+  productCategory: productCategoryReducer,
   userLogin: userLoginReducer,
   cart: cartReducer,
   orderCreate: orderCreateReducer,
+  paymentProcess: paymentProcessReducer,
+  paymentIntent: paymentIntentReducer,
+
 
 
 

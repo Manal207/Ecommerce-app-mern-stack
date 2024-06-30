@@ -9,6 +9,7 @@ const authRoutes = require('./routes/authRoutes'); // Make sure the path is corr
 const path = require('path'); // Import the path module
 const cartRoutes = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 
 
 
@@ -27,6 +28,8 @@ app.use('/api/addProduct', addProductRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/payments', paymentRoutes);
+
 
 
 

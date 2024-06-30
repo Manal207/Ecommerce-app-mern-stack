@@ -9,6 +9,12 @@ const getProducts = asyncHandler(async (req, res) => {
   res.json(products);
 });
 
+const getProductsByCategory = async (req, res) => {
+  const category = req.params.category;
+  const products = await Product.find({ category });
+  res.json(products);
+};
+
 module.exports = {
-  getProducts,
+  getProducts, getProductsByCategory
 };

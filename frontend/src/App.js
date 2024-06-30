@@ -7,26 +7,33 @@ import SignupScreen from './screens/signupScreen';
 import CartScreen from './screens/cartScreen';
 import CheckoutScreen from './screens/checkoutScreen';
 import PaymentScreen from './screens/paymentScreen';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+stripePromise.then(stripe => {
+  if (!stripe) {
+    console.error('Stripe did not load correctly.');
+  } else {
+    console.log('Stripe loaded successfully.');
+  }
+});
+
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<ProductListScreen />}/>
-        <Route path='/login' element={<LoginScreen />}/>
-        <Route path='/signup' element={<SignupScreen />}/>
-        <Route path='/productUpload' element={<ProductUpload />}/>*
-        <Route path="/cart" element={<CartScreen />} />
-        <Route path="/checkout" element={<CheckoutScreen />} />
-        <Route path="/payment" element={<PaymentScreen />} />
-
-        
-
-
-
-        
-  
-      </Routes>
+      <Elements stripe={stripePromise}>
+        <Routes>
+          <Route path='/' element={<ProductListScreen />}/>
+          <Route path='/login' element={<LoginScreen />}/>
+          <Route path='/signup' element={<SignupScreen />}/>
+          <Route path='/productUpload' element={<ProductUpload />}/>
+          <Route path="/cart" element={<CartScreen />} />
+          <Route path="/checkout" element={<CheckoutScreen />} />
+          <Route path="/payment" element={<PaymentScreen />} />
+        </Routes>
+      </Elements>
     </BrowserRouter>
     // <Router>
     //   <main>

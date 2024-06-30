@@ -1,0 +1,26 @@
+// components/Product.js
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Product.css';
+
+const Product = ({ product }) => {
+  return (
+    <div className="product">
+      <Link to={`/product/${product._id}`}>
+        <img src={product.image} alt={product.name} />
+      </Link>
+      <div className="product-info">
+        <Link to={`/product/${product._id}`}>
+          <p>{product.name}</p>
+        </Link>
+        <p>${product.price}</p>
+      </div>
+      <div className="product-actions">
+        <button><i className="fas fa-shopping-cart"></i></button>
+        <button><i className="fas fa-heart"></i></button>
+      </div>
+    </div>
+  );
+};
+
+export default Product;

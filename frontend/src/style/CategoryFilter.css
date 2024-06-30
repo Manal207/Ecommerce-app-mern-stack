@@ -1,0 +1,27 @@
+/* styles/CategoryFilter.css */
+.category-filter {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
+  }
+  
+  .category-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .category-button i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .category-button span {
+    font-size: 1rem;
+    color: #333;
+  }
+  
