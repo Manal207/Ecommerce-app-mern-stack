@@ -1,7 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const auth = require('../middleware/auth');
+
+console.log('Stripe Secret Key:', process.env.STRIPE_SECRET_KEY); // This should print your key or 'undefined' if not loaded correctly
+
 
 router.post('/create-payment-intent', auth, async (req, res) => {
   const { totalPrice } = req.body;
