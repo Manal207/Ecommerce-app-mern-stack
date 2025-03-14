@@ -15,7 +15,7 @@ const initialState = {
           user: action.payload,
           loading: false,
         };
-      case 'LOGOUT':
+      case 'USER_LOGOUT':
       case 'AUTH_ERROR':
         return {
           ...state,

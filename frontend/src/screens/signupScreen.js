@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../actions/authActions';
+import { loginUser } from '../actions/authActions';
 import { Link, useNavigate } from 'react-router-dom';
 import '../style/AuthScreens.css';
 
@@ -24,7 +25,10 @@ const SignupScreen = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(registerUser({ name, email, password }));
+    dispatch(loginUser({ email, password }));
+
   };
+
 
   return (
     <div className="auth-container">

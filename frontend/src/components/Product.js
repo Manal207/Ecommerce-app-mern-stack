@@ -17,15 +17,27 @@ const Product = ({ product }) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-      if (!isAuthenticated) {
-          navigate('/login');
-      } else {
-          // Add product to cart logic
-          dispatch(addToCart(product._id, 1));
-          console.log('prod added to cart');
+    if (!isAuthenticated) {
+        navigate('/login');
+    } else {
+        const isConfirmed = window.confirm("Are you sure you want to add this product to the cart?");
+        if (isConfirmed) {
+            dispatch(addToCart(product._id, 1));
+            alert("Product added successfully.");
+        }
+    }
+};
 
-      }
-  };
+  // const handleAddToCart = () => {
+  //     if (!isAuthenticated) {
+  //         navigate('/login');
+  //     } else {
+  //         // Add product to cart logic
+  //         dispatch(addToCart(product._id, 1));
+  //         console.log('prod added to cart');
+
+  //     }
+  // };
 
   return (
     <div className="product">
@@ -39,8 +51,8 @@ const Product = ({ product }) => {
       <p>${product.price}</p>
     </div>
     <div className="product-actions">
-      <button><i className="fas fa-shopping-cart"></i></button>
-      <button><i className="fas fa-heart"></i></button>
+      <button onClick={handleAddToCart}>add to cart<i className="fas fa-shopping-cart"></i></button>
+      <button>add to fav<i className="fas fa-heart"></i></button>
     </div>
   </div>
     // <div className="product">

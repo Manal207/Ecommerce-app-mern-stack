@@ -1,3 +1,10 @@
+import {
+  PRODUCT_DETAIL_REQUEST,
+  PRODUCT_DETAIL_SUCCESS,
+  PRODUCT_DETAIL_FAIL,
+} from '../constants/productConstants';
+
+
   export const productListReducer = (state = { products: [] }, action) => {
     switch (action.type) {
       case 'PRODUCT_LIST_REQUEST':
@@ -10,7 +17,18 @@
         return state;
     }
   };
-
+  export const productDetailReducer = (state = { product: {} }, action) => {
+    switch (action.type) {
+      case 'PRODUCT_DETAIL_REQUEST':
+        return { loading: true, product: {} };
+      case 'PRODUCT_DETAIL_SUCCESS':
+        return { loading: false, product: action.payload };
+      case 'PRODUCT_DETAIL_FAIL':
+        return { loading: false, error: action.payload };
+      default:
+        return state;
+    }
+  };
   export const productCategoryReducer = (state = { products: [] }, action) => {
     switch (action.type) {
       case 'PRODUCT_CATEGORY_REQUEST':
@@ -18,7 +36,7 @@
       case 'PRODUCT_CATEGORY_SUCCESS':
         return { loading: false, products: action.payload };
       case 'PRODUCT_CATEGORY_FAIL':
-        return { loading: false, error: action.payload };
+        return { loading: false, error: action.payload };    
       default:
         return state;
     }

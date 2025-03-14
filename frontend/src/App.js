@@ -7,6 +7,7 @@ import SignupScreen from './screens/signupScreen';
 import CartScreen from './screens/cartScreen';
 import CheckoutScreen from './screens/checkoutScreen';
 import PaymentScreen from './screens/paymentScreen';
+import ProductDetailScreen from './screens/productDetailScreen';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
@@ -28,6 +29,7 @@ const App = () => {
           <Route path='/' element={<ProductListScreen />}/>
           <Route path='/login' element={<LoginScreen />}/>
           <Route path='/signup' element={<SignupScreen />}/>
+          <Route path="/product/:id" element={<ProductDetailScreen />} /> 
           <Route path='/productUpload' element={<ProductUpload />}/>
           <Route path="/cart" element={<CartScreen />} />
           <Route path="/checkout" element={<CheckoutScreen />} />
