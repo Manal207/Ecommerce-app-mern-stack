@@ -10,6 +10,8 @@ import PaymentScreen from './screens/paymentScreen';
 import ProductDetailScreen from './screens/productDetailScreen';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import AdminScreen from './screens/adminScreen';
+import AdminnScreen from './screens/adminnScreen';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 stripePromise.then(stripe => {
@@ -34,6 +36,10 @@ const App = () => {
           <Route path="/cart" element={<CartScreen />} />
           <Route path="/checkout" element={<CheckoutScreen />} />
           <Route path="/payment" element={<PaymentScreen />} />
+          <Route path="/admin" element={<AdminScreen />}/>
+          <Route path="/adminn" element={<AdminnScreen />}/>
+
+
         </Routes>
       </Elements>
     </BrowserRouter>

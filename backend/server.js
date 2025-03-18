@@ -10,6 +10,11 @@ const cartRoutes = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 
+const editProductRoutes = require('./routes/editProductRoutes');
+const deleteProductRoutes = require('./routes/deleteProductRoutes');
+
+
+
 dotenv.config();
 connectDB();
 
@@ -24,6 +29,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/payments', paymentRoutes);
+
+app.use('/api/editProduct', editProductRoutes);
+app.use('/api/deleteProduct', deleteProductRoutes);
 
 
 

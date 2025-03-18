@@ -9,6 +9,11 @@ import { orderCreateReducer } from './reducers/orderReducers';
 import { paymentProcessReducer, paymentIntentReducer } from './reducers/paymentReducers';
 import { productCategoryReducer } from './reducers/productReducers';
 import { productDetailReducer } from './reducers/productReducers';
+import { 
+  productAddReducer,
+  productUpdateReducer,
+  productDeleteReducer 
+} from './reducers/productReducers'; // Ensure correct imports
 
 
 
@@ -17,6 +22,11 @@ const reducer = combineReducers({
   productList: productListReducer,
   productCategory: productCategoryReducer,
   productDetail: productDetailReducer, // Ensure this matches what you use in useSelector
+
+  productAdd: productAddReducer, // Add the add product reducer
+  productUpdate: productUpdateReducer, // Add the update product reducer
+  productDelete: productDeleteReducer, // Add the delete product reducer
+  
   userLogin: userLoginReducer,
   cart: cartReducer,
   orderCreate: orderCreateReducer,
